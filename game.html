@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.box {
+			background: rgba(255, 0, 0, 0.5);
+			border-radius: 50px;
+			border: 2px solid red;
+			height: 50px;
+			width: 50px;
+			position: absolute;
+			transition: 2s;
+		}
+
+		.btn{
+			height: 100px;
+			width: 200px;
+		}
+	</style>
+</head>
+<body>
+
+	<h1 class="chat"></h1>
+
+	<h1 class="scores"></h1>
+
+	<button class="btn">
+		start
+	</button>
+
+	<div class="box">
+		
+	</div>
+	<div class="box">
+		
+	</div>
+	<div class="box">
+		
+	</div>
+	<div class="box">
+		
+	</div>
+	<div class="box">
+		
+	</div>
+	<div class="box">
+		
+	</div>
+	<div class="box">
+		
+	</div>
+	<div class="box">
+		
+	</div>
+	<div class="box">
+		
+	</div>
+
+	<script type="text/javascript">
+		let boxs = document.querySelectorAll(".box")
+		let chat = document.querySelector(".chat")
+		let scorr = document.querySelector(".scores")
+		let btn = document.querySelector(".btn")
+
+		let time = 15
+		let score = 0
+
+
+		
+
+
+		let timerstop = function() {
+			
+		}
+
+		let timerin;
+
+		btn.onclick = function() {
+			mainf()
+			setInterval(mainf, 3000)
+			timerin = setInterval(timer, 1000)
+		}
+
+		for(let i=0; i<9; i=i+1) {
+			boxs[i].onclick = function() {
+				score = score+1
+				boxs[i].style.display = "none"
+				scorr.innerHTML = score
+
+				if(score>=9) {
+					alert("You won")
+					clearInterval(timerin)
+				}
+			}
+		}
+
+		let timer = function() {
+			time=time-1
+			chat.innerHTML = time
+
+
+			if(time<=0 ) {
+				if(score<9) {
+					alert("You lose")
+				}
+
+				else {
+					alert("You won")
+				}
+			}
+
+		
+		
+			
+			
+		}
+
+		let rml = function(max) {
+		  return Math.floor(Math.random() * max);
+		}
+
+		let rmt = function(max) {
+			return Math.floor(Math.random() * max)
+		}
+
+		let rs = function(max) {
+			return Math.floor(Math.random() * max)
+		}
+
+		let ml = function(ndd, l) {
+			boxs[ndd].style.left = l + "px"
+		}
+
+		let mt = function(ndd, t) {
+			boxs[ndd].style.top = t + "px"
+		}
+
+		let ss = function(ndd, s) {
+			boxs[ndd].style.height = s + "px"
+			boxs[ndd].style.width = s + "px"
+			boxs[ndd].style.borderRadius = s + "px"
+		}
+
+		let mainf = function() {
+			for(let i=0; i<9; i=i+1) {
+				let movel = rml(1600);
+				let movet = rmt(900);
+				let resize = rmt(100);
+
+				ml(i, movel)
+				mt(i, movet)
+				ss(i, resize)
+			}
+		}
+
+	</script>
+
+</body>
+</html>
